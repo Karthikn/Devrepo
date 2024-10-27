@@ -25,6 +25,14 @@ def get_task(task_id):
             return jsonify({'task': task})
     abort(404, description="Task not found")
 
+@app.route('/addtaskid',methods=['POST'])
+def add_tasksid():
+    lenght=len(tasks)+1
+    task=request.json
+    task["id"]=lenght
+    tasks.append(task)
+    return tasks
+
 if __name__ == '__main__':
     app.run(debug=True)
 
