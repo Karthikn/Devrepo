@@ -6,7 +6,7 @@ tasks = [
     {
         'id': 1,
         'title': 'Buy groceries',
-        'description': 'Milk, Cheese, Pizza, Fruit',
+        'description': 'Milk, Cheese, Pizza, Fruit',#list of items
         'done': False
     },
     {
