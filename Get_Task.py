@@ -31,7 +31,7 @@ def add_tasksid():
     task=request.json
     task["id"]=lenght
     tasks.append(task)
-    return tasks
+    return tasks #returns list
 
 if __name__ == '__main__':
     app.run(debug=True)
