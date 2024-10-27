@@ -35,5 +35,13 @@ def update_student(student_id):
             return jsonify(student), 200
     return jsonify({"error": "Student not found"}), 404
 
+@app.route('/addtaskid',methods=['POST'])
+def add_tasksid():
+    lenght=len(tasks)+1
+    task=request.json
+    task["id"]=lenght
+    tasks.append(task)
+    return tasks #returns list
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
