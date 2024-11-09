@@ -33,28 +33,45 @@ def calculate_endpoint():
 
 @app.route('/salman-divide', methods=['GET'])
 def divide():
-    # Get query parameters 'a' and 'b' from the URL
     a = request.args.get('a')
     b = request.args.get('b')
     
-    # Validate that both 'a' and 'b' are provided
     if a is None or b is None:
         return jsonify(error="Missing 'a' or 'b' parameter"), 400
     
     try:
-        # Convert 'a' and 'b' to floats
         a = float(a)
         b = float(b)
     except ValueError:
         return jsonify(error="'a' and 'b' must be numbers"), 400
 
-    # Handle division by zero
     if b == 0:
         return jsonify(error="Cannot divide by zero"), 400
     
-    # Perform the division
     result = a / b
     return jsonify(result=result)
+
+@app.route('/salman-multiply', methods=['POST'])
+def calculate():
+    data = request.get_json()
+
+    a = data.get('a')
+    b = data.get('b')
+    operation = data.get('operation')
+
+    if a is None or b is None or operation is None:
+        return jsonify(error="Missing 'a', 'b', or 'operation' parameter"), 400
+
+    try:
+        a = float(a)
+        b = float(b)
+    except ValueError:
+        return jsonify(error="'a' and 'b' must be numbers"), 400
+
+    if operation == 'multiply':
+        result = a * b
+    else:
+        return jsonify(error="Invalid operation 'multiply' "), 400
 
 if __name__ == "__main__":
     app.run(debug=True)
